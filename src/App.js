@@ -2,7 +2,7 @@ import { hot } from 'react-hot-loader';
 import * as React from 'react';
 import Home from './view/Home';
 import Menu from './components/Menu';
-
+import Counter from './components/Counter';
 import './styles/theme.sass';
 
 const MENU_ITEMS = [
@@ -17,6 +17,7 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
       <main>
         <Menu items={MENU_ITEMS} />
         <Home username="DaftCoder" />
+        <Counter />
       </main>
     );
   }
