@@ -15,12 +15,25 @@ class Details extends React.Component{
 
 
   render(){
-
-
+    let d = new Date(launch.launch_date_utc);
+    let month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+    let launchDate = month[d.getMonth()];
     return(
       <div className="section launch">
         <div className="launch__info">
-          <h2 className="launch__info__date">{(new Date(launch.launch_date_utc).toDateString())}</h2>
+          <h2 className="launch__info__date">{(new Date(launch.launch_date_utc).getDate())} {launchDate} {(new Date(launch.launch_date_utc).getFullYear())}</h2>
           <h1 className="launch__info__name">{launch.rocket.rocket_name} Next Launch</h1>
           <h2 className="launch__info__counter"> <Counter /> </h2>
           <img src={launch.links.mission_patch_small} alt="launch-logo" className="launch__logo"></img>
