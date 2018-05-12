@@ -1,6 +1,4 @@
-# ⚛ daftcode-react-starter
-
-React boilerplate for everyone 
+# ⚛ Space-x Application, Daftcode, Front End Level Up 2018 (Task four)
 
 ## 🕹 Features
 * [React (v16.3)](https://reactjs.org) - a JavaScript library for building user interfaces
@@ -15,13 +13,13 @@ Tweak React components in real time ⚛️⚡️
 
 Clone repository to your local workspace:
 ```bash
-git clone https://github.com/mkaczkowski/daftcode-react-starter.git
+git clone https://github.com/NataD/project_x.git
 ```
 
 Install project dependencies using npm or yarn:
 
 ```bash
-cd daftcode-react-starter
+cd project-x
 npm install
 ```
 
@@ -59,10 +57,3 @@ Open in your browser:
 http://localhost:5000
 ```
 
-## 📜 License
-
-MIT
-
-## 👨 Author
-
-Mariusz Kaczkowski from [DaftCode](http://daftcode.pl)
