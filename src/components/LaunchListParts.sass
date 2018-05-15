@@ -1,0 +1,132 @@
+@import "~styles/variables"
+
+
+.launches-section
+  &__item
+    display: flex
+    flex-direction: column
+    height: 120px
+    margin-bottom: 70px
+    text-transform: uppercase
+    &:hover
+      cursor: pointer
+
+    &-value
+      color: #fff
+      letter-spacing: 2px
+    &-label
+      margin-right: 5px
+      color: $cool_grey
+      letter-spacing: 2px
+
+    &-line
+      display: inline-block
+      padding: 0 10px
+      color: $cool_grey
+
+    &-date
+      margin: 0
+      font-size: 14px
+      letter-spacing: 9px
+      margin-bottom: 10px
+      color: #fff
+
+    &-details
+      margin-top: 15px
+      margin-bottom: 30px
+
+
+  &__content
+    display: flex
+    flex-direction: row
+
+    &-column
+      width: 50%
+      flex: 1
+
+      &-left
+        padding-left: 45px
+      &-right
+        text-align: right
+
+        border-left: 2px dashed $cool_grey
+        padding-top: 100px
+        padding-right: 20px
+
+
+  &__body
+    background-color: #000
+    &-content
+      padding-top: 70px
+
+
+.arrow-icon
+  display: flex
+  position: relative
+  height: 10px
+  width: 100%
+
+
+
+  &-right
+    width: 93%
+    margin-left: 40px
+    &:after
+      display: inline-block
+      content: ''
+      position: absolute
+      top: 50%
+      right: 0
+      left: 5px
+      height: 2px
+      width: 100%
+      background: $desert
+      transform: translateY(-1px)
+
+    &:before
+      display: inline-block
+      content: ''
+      position: absolute
+      top: 0
+      right: 0
+      left: -45px
+      height: 8px
+      width: 8px
+      border-radius: 50%
+      background: $cool_grey
+
+  &-left
+    justify-content: flex-end
+    width: 95%
+    margin-right: 40px
+    &:before
+      display: inline-block
+      content: ''
+      position: absolute
+      top: 50%
+      left: 0
+      right: 5px
+      height: 2px
+      width: 100%
+      background: $desert
+      transform: translateY(-1px)
+    &:after
+      display: inline-block
+      content: ''
+      position: absolute
+      top: 0
+      right: -45px
+
+      height: 8px
+      width: 8px
+      border-radius: 50%
+      background: $cool_grey
+    img
+      transform: rotate(180deg)
+
+
+.item-details-left
+  padding-right: 100px
+.item-details-right
+    padding-left: 200px
+
