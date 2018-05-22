@@ -23,6 +23,8 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
     this.handleBackClick = this.handleBackClick.bind(this);
   }
 
+
+
   get activeViewComponent() {
     const { viewName } = this.state;
 
@@ -51,13 +53,15 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
 
   handleLaunchClick() {
     this.setState({ viewName: 'details' });
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   handleBackClick() {
     this.setState({ viewName: 'list' });
   }
 
-  render() {
+    render() {
     return (
       <main className="page-container">
         <div className="page-content">
