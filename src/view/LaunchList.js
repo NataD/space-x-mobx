@@ -10,10 +10,7 @@ import spinner from '../assets/img/spinner.gif';
 
 import './LaunchList.sass';
 
-
-
 const options = ["Falcon 1", "Falcon 9", "Falcon 10", "Falcon Heavy"];
-
 class LaunchesList extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props){
     super();
@@ -53,7 +50,7 @@ class LaunchesList extends React.Component { // eslint-disable-line react/prefer
   render() {
 
     let filtered = this.state.launches;
-    let { isLoading, isEmpty, error} = this.state;
+    let {error, isLoading, isEmpty} = this.state;
 
     if(error){
       return(
