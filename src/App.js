@@ -1,5 +1,6 @@
-import { hot } from 'react-hot-loader';
+// import { hot } from 'react-hot-loader';
 import * as React from 'react';
+import { observer, inject } from 'mobx';
 
 import launch from './assets/sample_json_data/launch.json';
 import launchSite from './assets/sample_json_data/launch_site.json';
@@ -9,24 +10,30 @@ import launches from './assets/sample_json_data/launches.json';
 import LaunchDetails from './view/LaunchDetails';
 import LaunchList from './view/LaunchList';
 import Footer from './components/Footer';
-
+import MainStore from './stores/MainStore';
 import './styles/theme.sass';
 
-class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  constructor(props) {
-    super(props);
-    this.state = {
-      viewName: 'list',
-    };
+@inject('MainStore')
+@observer
 
-    this.handleLaunchClick = this.handleLaunchClick.bind(this);
-    this.handleBackClick = this.handleBackClick.bind(this);
+class App extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     viewName: 'list',
+  //   };
+  //
+  //   this.handleLaunchClick = this.handleLaunchClick.bind(this);
+  //   this.handleBackClick = this.handleBackClick.bind(this);
+  componentDidMount(){
+    this.props.MainStore.switchView('list');
   }
 
 
 
   get activeViewComponent() {
-    const { viewName } = this.state;
+    // const { viewName } = this.state;
+    const viewName = this.props.MainStore.currentViewName;
 
     switch (viewName) {
       case 'list':
@@ -52,13 +59,15 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
   }
 
   handleLaunchClick() {
-    this.setState({ viewName: 'details' });
+    // this.setState({ viewName: 'details' });
+    this.props.MainStore.switchView('details');
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
 
   handleBackClick() {
-    this.setState({ viewName: 'list' });
+    // this.setState({ viewName: 'list' });
+    this.props.MainStore.switchView('list');
   }
 
     render() {
@@ -73,4 +82,5 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
   }
 }
 
-export default hot(module)(App);
+// export default hot(module)(App);
+export default App;
