@@ -1,8 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { observable, action } from 'mobx';
+import { observer, inject } from 'mobx-react';
+
 
 import './LaunchListFilter.sass';
 
+@inject('MainStore')
+@observer
 class LaunchFilter extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +23,7 @@ class LaunchFilter extends React.Component {
       return (
       <div className="launch-list-button-holder">
         <div className="mission-links__btns">
-          <button  onClick={this.transfer} className="launch-list-button" >All rockets</button>
+          {/*<button  onClick={this.transfer} className="launch-list-button" >All rockets</button>*/}
           {
             this.props.options.map((element, index) =>{
               return <button data-name = {element} key={index} onClick={this.transfer} className="launch-list-button" >{element}</button>

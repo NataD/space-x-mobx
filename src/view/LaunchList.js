@@ -8,49 +8,77 @@ import LaunchLeft from '../components/LaunchListLeft';
 import LaunchRight from '../components/LaunchListRight';
 import spinner from '../assets/img/spinner.gif';
 
+import { Provider } from 'mobx-react';
+import MainStore from '../stores/MainStore';
+
 import './LaunchList.sass';
 
-const options = ["Falcon 1", "Falcon 9", "Falcon 10", "Falcon Heavy"];
+import { observable, action } from 'mobx';
+import { observer, inject } from 'mobx-react';
+
+@inject('MainStore')
+@observer
 class LaunchesList extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  constructor(props){
-    super();
-    this.handleFilterChange = this.handleFilterChange.bind(this);
-  }
-  state = {
-    rocketNameFilter: '',
-    launches: [],
-    isLoading: false,
-    error: false,
-    isEmpty: false
+
+
+
+  // constructor(props){
+  //   super();
+  //   this.handleFilterChange = this.handleFilterChange.bind(this);
+  // }
+  // state = {
+  //   rocketNameFilter: '',
+  //   launches: [],
+  //   isLoading: false,
+  //   error: false,
+  //   isEmpty: false
+  // };
+  //
+  // fetchData(value){
+  //   this.setState({ isLoading: true });
+  //   this.setState({ rocketNameFilter: value },()=>{
+  //     let filter = `?rocket_name=${this.state.rocketNameFilter}`;
+  //     if(this.state.rocketNameFilter === undefined) filter = ``;
+  //     fetch(`https://api.spacexdata.com/v2/launches/all${filter}`)
+  //       .then(response => response.json())
+  //       .then(data =>{
+  //         this.setState({ launches: data , isLoading: false, isEmpty: false});
+  //         if(data.length===0 ) this.setState({ isEmpty: true});
+  //       } )
+  //       .catch(error =>( this.setState({ error: true})))
+  //
+  //   });
+  // }
+  //
+  // handleFilterChange(value) {
+  //   this.fetchData(value);
+  // }
+
+  @action.bound
+  handleFilterChange = (value) => {
+
+
+
+    //console.log(value.toLowerCase().replace(/\s/g, ""));
+
+     if(value === "All Rockets"){
+       this.props.MainStore.fetchLaunches('https://api.spacexdata.com/v2/launches?&launch_year=2018');
+       console.log("clicked");
+     } else {
+       this.props.MainStore.setFilter(value.toLowerCase().replace(/\s/g, ""));
+     }
   };
 
-  fetchData(value){
-    this.setState({ isLoading: true });
-    this.setState({ rocketNameFilter: value },()=>{
-      let filter = `?rocket_name=${this.state.rocketNameFilter}`;
-      if(this.state.rocketNameFilter === undefined) filter = ``;
-      fetch(`https://api.spacexdata.com/v2/launches/all${filter}`)
-        .then(response => response.json())
-        .then(data =>{
-          this.setState({ launches: data , isLoading: false, isEmpty: false});
-          if(data.length===0 ) this.setState({ isEmpty: true});
-        } )
-        .catch(error =>( this.setState({ error: true})))
 
-    });
-  }
-
-  handleFilterChange(value) {
-    this.fetchData(value);
-  }
-  componentDidMount(){
-    this.fetchData('');
-  }
+  // componentDidMount(){
+  //   this.props.MainStore.fetchLaunches('');
+  // }
 
   render() {
-
-    let filtered = this.state.launches;
-    let {error, isLoading, isEmpty} = this.state;
+    const options = ["All Rockets", "Falcon 1", "Falcon 9", "Falcon 10", "Falcon Heavy"];
+    let filtered = this.props.MainStore.listState.launches;
+    //let {error, isLoading, isEmpty} = this.state;
+    let {error, isLoading, isEmpty} = this.props.MainStore.listState;
 
     if(error){
       return(

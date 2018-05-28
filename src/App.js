@@ -1,6 +1,7 @@
 // import { hot } from 'react-hot-loader';
 import * as React from 'react';
-import { observer, inject } from 'mobx';
+import { observer, inject } from 'mobx-react';
+import { Provider } from 'mobx-react';
 
 import launch from './assets/sample_json_data/launch.json';
 import launchSite from './assets/sample_json_data/launch_site.json';
@@ -15,7 +16,6 @@ import './styles/theme.sass';
 
 @inject('MainStore')
 @observer
-
 class App extends React.Component {
   // constructor(props) {
   //   super(props);
@@ -58,17 +58,18 @@ class App extends React.Component {
     }
   }
 
-  handleLaunchClick() {
+  handleLaunchClick = () => {
     // this.setState({ viewName: 'details' });
     this.props.MainStore.switchView('details');
+    console.log(this.props.MainStore.switchView('details'));
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  }
+  };
 
-  handleBackClick() {
+  handleBackClick= () => {
     // this.setState({ viewName: 'list' });
     this.props.MainStore.switchView('list');
-  }
+  };
 
     render() {
     return (

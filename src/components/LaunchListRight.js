@@ -1,7 +1,13 @@
 import arrowPointer from '../assets/img/arrow_pointer.png';
 import * as React from "react";
 import './LaunchListParts.sass';
+import { observer, inject } from 'mobx-react';
+import { Provider } from 'mobx-react';
+import MainStore from '../stores/MainStore';
 
+
+@inject('MainStore')
+@observer
 class LaunchRight extends React.Component {
   constructor(props){
     super();
@@ -18,7 +24,8 @@ class LaunchRight extends React.Component {
   }
 
   handleClick(){
-    this.props.onClick();
+    //this.props.onClick();
+    this.props.MainStore.switchView('details');
     document.body.scrollTop = 0; //scroll to the top on the page with details
     document.documentElement.scrollTop = 0;
   }

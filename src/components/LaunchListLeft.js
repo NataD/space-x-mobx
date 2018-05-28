@@ -1,7 +1,13 @@
 import arrowPointer from '../assets/img/arrow_pointer.png';
 import * as React from "react";
 import './LaunchListParts.sass';
+import { observer, inject } from 'mobx-react';
+import { Provider } from 'mobx-react';
+import MainStore from '../stores/MainStore';
 
+
+@inject('MainStore')
+@observer
 class LaunchLeft extends React.Component {
   constructor(props){
     super();
@@ -13,12 +19,13 @@ class LaunchLeft extends React.Component {
     let day = date.getDate() < 10 ? '0'+ date.getDate() : date.getDate();
     let locale = "en-us";
     let month =  date.toLocaleString(locale, { month: "long" });
-    let readydate = `${day} ${month} ${date.getFullYear()}`
+    let readydate = `${day} ${month} ${date.getFullYear()}`;
     return readydate;
   }
 
   handleClick(){
-    this.props.onClick();
+    //this.props.onClick();
+    this.props.MainStore.switchView('details');
     document.body.scrollTop = 0; //scroll to the top when getting details of a flight
     document.documentElement.scrollTop = 0;
   }
